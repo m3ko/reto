@@ -83,6 +83,8 @@ public class Login {
     	@Override
         public void mouseClicked(MouseEvent e) {
             System.out.println(" you clicked me");
+            CrearCuenta.cuentaCrear();
+            
         }
     	
 	});
@@ -143,18 +145,8 @@ public class Login {
       panel.add(submit);
 
     frame.getContentPane().add(panel);
+    frame.setUndecorated(true);
     frame.setVisible(true);
     
-    
-
-
-
-
-
-  }
-  public static void login() {
-  	
-  
-  	
   }
 }
