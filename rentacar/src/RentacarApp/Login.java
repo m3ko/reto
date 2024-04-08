@@ -84,6 +84,7 @@ public class Login {
         public void mouseClicked(MouseEvent e) {
             System.out.println(" you clicked me");
             CrearCuenta.cuentaCrear();
+            frame.dispose();
             
         }
     	

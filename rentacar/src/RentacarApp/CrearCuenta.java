@@ -185,6 +185,7 @@ public class CrearCuenta {
 					boolean exito = db_personas.añadirPersona(dniNew, nombreNew, apellidoNew, contraNew, telefonoNew, mailNew);
 					if(exito==true) {
 						JOptionPane.showMessageDialog(null, "Usuario creado con exito!");
+						Login.main(null);
 					}
 				}
 		}});
@@ -195,6 +196,7 @@ public class CrearCuenta {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login.main(null);
+				frame.dispose();
 			}
 		});
 		btnVolver.setForeground(Color.ORANGE);

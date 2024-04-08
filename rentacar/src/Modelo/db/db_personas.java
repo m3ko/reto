@@ -29,8 +29,9 @@ public class db_personas {
 				String mail = rs.getString("mail");
 				String contraseña = rs.getString("contraseña");
 				String telefono = rs.getString("telefono");
+				int clavePrivada = rs.getInt("clavePrivada");
 
-				personas persona = new personas(null, null, null, 0, null, null, null);
+				personas persona = new personas(null, null, null, 0, null, null, null,0);
 
 				persona.setDni(dni);
 				persona.setNombre(nombre);
@@ -39,6 +40,7 @@ public class db_personas {
 				persona.setMail(mail);
 				persona.setContraseña(contraseña);
 				persona.setTelefono(telefono);
+				persona.setClavePrivada(clavePrivada);
 
 				listaPersonas.add(persona);
 				System.out.println(listaPersonas);
@@ -144,7 +146,7 @@ public class db_personas {
 		try {
 
 			Statement st = con.createStatement();
-			String sql = "INSERT INTO `personas`(`dni`, `nombre`, `apellido`, `rol`, `mail`, `contraseña`, `telefono`) VALUES ('"+dniNew+"','"+nombreNew+"','"+apellidoNew+"','0','"+mailNew+"','"+contraNew+"','"+telefonoNew+"');";
+			String sql = "INSERT INTO `personas`(`dni`, `nombre`, `apellido`, `rol`, `mail`, `contraseña`, `telefono`, `clavePrivada`) VALUES ('"+dniNew+"','"+nombreNew+"','"+apellidoNew+"','0','"+mailNew+"','"+contraNew+"','"+telefonoNew+"','LPAD(FLOOR(RAND() * 1000000), 6, '0')');";
 			System.out.println(sql);
 			st.execute(sql);
 			System.out.println("sql funciona");

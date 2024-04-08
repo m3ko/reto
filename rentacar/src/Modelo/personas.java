@@ -9,17 +9,7 @@ public class personas {
 	public String mail;
 	public String contraseña;
 	public String telefono;
-	public personas(String dni, String nombre, String apellido, int rol, String mail, String contraseña,
-			String telefono) {
-		super();
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.rol = rol;
-		this.mail = mail;
-		this.contraseña = contraseña;
-		this.telefono = telefono;
-	}
+	public int clavePrivada;
 	public String getDni() {
 		return dni;
 	}
@@ -62,6 +52,24 @@ public class personas {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public int getClavePrivada() {
+		return clavePrivada;
+	}
+	public void setClavePrivada(int clavePrivada) {
+		this.clavePrivada = clavePrivada;
+	}
+	public personas(String dni, String nombre, String apellido, int rol, String mail, String contraseña,
+			String telefono, int clavePrivada) {
+		super();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.rol = rol;
+		this.mail = mail;
+		this.contraseña = contraseña;
+		this.telefono = telefono;
+		this.clavePrivada = clavePrivada;
+	}
 	public personas() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -69,11 +77,8 @@ public class personas {
 	@Override
 	public String toString() {
 		return "personas [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", rol=" + rol + ", mail="
-				+ mail + ", contraseña=" + contraseña + ", telefono=" + telefono + "]";
+				+ mail + ", contraseña=" + contraseña + ", telefono=" + telefono + ", clavePrivada=" + clavePrivada
+				+ "]";
 	}
-	
-	
-
-	
 	
 }
