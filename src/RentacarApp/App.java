@@ -85,15 +85,15 @@ public class App {
 			}
 		});
 
-		hacerReserva.setSelectedIcon(null);
+		hacerReserva.setSelectedIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\negro2.gif"));
 		hacerReserva.setForeground(Color.BLACK);
-		hacerReserva.setFont(new Font("DialogInput", Font.BOLD, 10));
+		hacerReserva.setFont(new Font("DialogInput", Font.BOLD, 16));
 		hacerReserva.setBackground(Color.ORANGE);
 		hacerReserva.setBounds(10, 150, 410, 150);
 		panel.add(hacerReserva);
 
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setForeground(new Color(112, 128, 144));
+		progressBar.setForeground(Color.MAGENTA);
 		progressBar.setValue(5);
 		progressBar.setBounds(10, 136, 410, 14);
 		panel.add(progressBar);
@@ -147,7 +147,7 @@ public class App {
 							}
 						});
 						gestionarReserva.setForeground(Color.BLACK);
-						gestionarReserva.setFont(new Font("DialogInput", Font.BOLD, 10));
+						gestionarReserva.setFont(new Font("DialogInput", Font.BOLD, 16));
 						gestionarReserva.setBackground(Color.ORANGE);
 						gestionarReserva.setBounds(10, 297, 410, 150);
 						panel.add(gestionarReserva);

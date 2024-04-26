@@ -145,7 +145,6 @@ public class CrearCuenta {
 		textContra2.setFont(new Font("DialogInput", Font.PLAIN, 10));
 		textContra2.setBounds(226, 302, 156, 19);
 		panel.add(textContra2);
-		
 
 		// BOTONES
 
@@ -155,10 +154,10 @@ public class CrearCuenta {
 		submit.setBackground(Color.MAGENTA);
 		submit.setForeground(Color.ORANGE);
 		panel.add(submit);
-		
+
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String dniNew = textDNI.getText();
 				String nombreNew = textNombre.getText();
 				String apellidoNew = textApellido.getText();
@@ -169,30 +168,36 @@ public class CrearCuenta {
 
 				System.out.println(contraNew);
 				System.out.println(contra2);
-				
+
 				boolean comprobDni = db_personas.comprobarDNI(dniNew);
 				boolean comprobMail = db_personas.comprobarMail(mailNew);
-				
+
 				if (!(contraNew.equals(contra2))) {
-					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden!!","Warning",JOptionPane.WARNING_MESSAGE);
-				} else if(comprobDni == true) {
-					JOptionPane.showMessageDialog(null, "Ya existe un Usuario con ese DNI!"
-							+ "/r/n"
-							+ "Suplantar la identidad de alguien es un delito :(","Warning",JOptionPane.WARNING_MESSAGE);
-				} else if(comprobMail==true) {
-					JOptionPane.showMessageDialog(null, "Ya existe un Usuario con ese Mail","Warning",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden!!", "Warning",
+							JOptionPane.WARNING_MESSAGE);
+				} else if (comprobDni == true) {
+					JOptionPane.showMessageDialog(null,
+							"Ya existe un Usuario con ese DNI!" + "/r/n"
+									+ "Suplantar la identidad de alguien es un delito :(",
+							"Warning", JOptionPane.WARNING_MESSAGE);
+				} else if (comprobMail == true) {
+					JOptionPane.showMessageDialog(null, "Ya existe un Usuario con ese Mail", "Warning",
+							JOptionPane.WARNING_MESSAGE);
 				} else {
-					boolean exito = db_personas.añadirPersona(dniNew, nombreNew, apellidoNew, contraNew, telefonoNew, mailNew);
-					if(exito==true) {
+					boolean exito = db_personas.añadirPersona(dniNew, nombreNew, apellidoNew, contraNew, telefonoNew,
+							mailNew);
+					if (exito == true) {
 						JOptionPane.showMessageDialog(null, "Usuario creado con exito!");
 						Login.main(null);
 						int auxClave = db_personas.getClave(dniNew);
-						JOptionPane.showMessageDialog(null, "Se te ha asignado una ClavePrivada: "+auxClave+", Apúntala, la necesitarás si olvidas tu contraseña!!","Warning",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null,
+								"Se te ha asignado una ClavePrivada: " + auxClave
+										+ ", Apúntala, la necesitarás si olvidas tu contraseña!!",
+								"Warning", JOptionPane.WARNING_MESSAGE);
 					}
 				}
-		}});
-
-		
+			}
+		});
 
 		JButton btnVolver = new JButton("VOLVER");
 		btnVolver.addActionListener(new ActionListener() {

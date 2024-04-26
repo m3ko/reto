@@ -1,58 +1,45 @@
 package RentacarApp;
 
 import javax.swing.JFrame;
+
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 import java.awt.Color;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JSplitPane;
+
 import javax.swing.SwingConstants;
 
-import Modelo.db.db_personas;
+
 
 import java.awt.Font;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.JTree;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import javax.swing.JProgressBar;
 import java.awt.BorderLayout;
-import javax.swing.border.MatteBorder;
-import javax.swing.AbstractListModel;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JCalendar;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import com.toedter.components.JSpinField;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
-import com.toedter.components.JLocaleChooser;
-import java.awt.List;
-import java.awt.Choice;
-import javax.swing.JRadioButtonMenuItem;
+
 
 public class HacerReserva {
 
@@ -130,37 +117,111 @@ public class HacerReserva {
 		
 				JProgressBar progressBar = new JProgressBar();
 				progressBar.setBounds(0, 144, 430, 14);
-				progressBar.setForeground(new Color(112, 128, 144));
-				progressBar.setValue(15);
+				progressBar.setForeground(Color.MAGENTA);
+				progressBar.setValue(25);
 				panel.add(progressBar);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(10, 236, 199, 175);
-		panel.add(calendar);
+		JCalendar calendarRecogida = new JCalendar();
+		calendarRecogida.setBorder(null);
+		calendarRecogida.getDayChooser().getDayPanel().setForeground(Color.MAGENTA);
+		calendarRecogida.getDayChooser().getDayPanel().setBorder(null);
+		calendarRecogida.getDayChooser().setWeekOfYearVisible(false);
+		calendarRecogida.getDayChooser().setWeekdayForeground(Color.BLACK);
+		calendarRecogida.getDayChooser().setSundayForeground(Color.MAGENTA);
+		calendarRecogida.getYearChooser().getSpinner().setBackground(Color.WHITE);
+		calendarRecogida.getYearChooser().getSpinner().setForeground(Color.MAGENTA);
+		calendarRecogida.getMonthChooser().getComboBox().setForeground(Color.MAGENTA);
+		calendarRecogida.getMonthChooser().getComboBox().setBackground(Color.WHITE);
+		calendarRecogida.getDayChooser().setBackground(Color.WHITE);
+		calendarRecogida.getDayChooser().getDayPanel().setBackground(Color.WHITE);
+		calendarRecogida.setDecorationBackgroundColor(Color.WHITE);
+		calendarRecogida.setBounds(10, 236, 199, 175);
+		panel.add(calendarRecogida);
 
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
-		JCalendar calendar_1 = new JCalendar();
-		calendar_1.setBounds(219, 236, 199, 175);
-		panel.add(calendar_1);
+		JCalendar calendarEntrega = new JCalendar();
+		calendarEntrega.setBorder(null);
+		calendarEntrega.getDayChooser().getDayPanel().setBorder(null);
+		calendarEntrega.getDayChooser().setWeekOfYearVisible(false);
+		calendarEntrega.getDayChooser().setAlwaysFireDayProperty(true);
+		calendarEntrega.getDayChooser().setWeekdayForeground(Color.BLACK);
+		calendarEntrega.getDayChooser().setSundayForeground(Color.MAGENTA);
+		calendarEntrega.getYearChooser().getSpinner().setForeground(Color.MAGENTA);
+		calendarEntrega.getMonthChooser().getComboBox().setForeground(Color.MAGENTA);
+		calendarEntrega.getDayChooser().getDayPanel().setBackground(Color.WHITE);
+		calendarEntrega.getDayChooser().getDayPanel().setForeground(Color.MAGENTA);
+		calendarEntrega.getDayChooser().setDecorationBackgroundColor(Color.WHITE);
+		calendarEntrega.getDayChooser().setBackground(Color.WHITE);
+		calendarEntrega.setBounds(219, 236, 199, 175);
+		panel.add(calendarEntrega);
 		
 		JButton btnNext = new JButton("NEXT");
+		btnNext.setForeground(Color.ORANGE);
+		btnNext.setBackground(Color.GRAY);
+		btnNext.setFont(new Font("DialogInput", Font.BOLD, 11));
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (calendar!=null) {
+				if (calendarRecogida!=null && calendarEntrega!=null) {
+					
 					SimpleDateFormat ff=new SimpleDateFormat("YYYY-MM-dd");
-					String date1 = ff.format(calendar.getDate());
+					
+					
+					
+					String date1 = ff.format(calendarRecogida.getDate());
+					String date2 = ff.format(calendarEntrega.getDate());
+					
 					System.out.println(date1);
-				}
-				if (calendar_1!=null) {
-					SimpleDateFormat ff=new SimpleDateFormat("YYYY-MM-dd");
-					String date2 = ff.format(calendar_1.getDate());
 					System.out.println(date2);
+					SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+					
+					Date fecha1 = null;
+					try {
+
+					fecha1 = (Date) formatoDelTexto.parse(date1);
+
+					} catch (ParseException ex) {
+
+					ex.printStackTrace();
+
+					}
+					
+					Date fecha2 = null;
+					try {
+
+					fecha2 = (Date) formatoDelTexto.parse(date2);
+
+					} catch (ParseException ex) {
+
+					ex.printStackTrace();
+
+					}
+					long mili1 = fecha1.getTime();
+					long mili2 = fecha2.getTime();
+					long mili3 = mili2-mili1;
+					
+					long diasRestantes = (mili3/3600000)/24;
+					frame.dispose();
+					
+					System.out.println(diasRestantes+" dias quedan");
+
+					
+					
 				}
+				if (calendarEntrega!=null) {
+					SimpleDateFormat ff=new SimpleDateFormat("YYYY-MM-dd");
+					String date2 = ff.format(calendarEntrega.getDate());
+					
+					System.out.println(date2);
+					
+					RentacarApp.HacerReserva2.reservaHacer2();
+					frame.dispose();
+				}
+				
 			}
 		});
-		btnNext.setBounds(177, 421, 80, 21);
+		btnNext.setBounds(229, 421, 80, 21);
 		panel.add(btnNext);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione FECHA y HORA:");
@@ -170,40 +231,58 @@ public class HacerReserva {
 		panel.add(lblNewLabel);
 		
 		JLabel lblFechaYHora = new JLabel("RECOGIDA");
+		lblFechaYHora.setForeground(Color.MAGENTA);
 		lblFechaYHora.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFechaYHora.setFont(new Font("DialogInput", Font.BOLD, 10));
+		lblFechaYHora.setFont(new Font("DialogInput", Font.BOLD, 12));
 		lblFechaYHora.setBounds(10, 205, 101, 21);
 		panel.add(lblFechaYHora);
 		
 		JLabel lblEntrega = new JLabel("ENTREGA");
+		lblEntrega.setForeground(Color.MAGENTA);
 		lblEntrega.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEntrega.setFont(new Font("DialogInput", Font.BOLD, 10));
+		lblEntrega.setFont(new Font("DialogInput", Font.BOLD, 12));
 		lblEntrega.setBounds(219, 205, 101, 21);
 		panel.add(lblEntrega);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("DialogInput", Font.BOLD, 10));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox.setBounds(330, 205, 39, 21);
-		panel.add(comboBox);
+		JComboBox hora2 = new JComboBox();
+		hora2.setFont(new Font("DialogInput", Font.BOLD, 10));
+		hora2.setModel(new DefaultComboBoxModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		hora2.setBounds(330, 205, 39, 21);
+		String h2 = hora2.getSelectedItem().toString();
+		int horaEntrega = Integer.parseInt(h2);
+		panel.add(hora2);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_1.setFont(new Font("DialogInput", Font.BOLD, 10));
-		comboBox_1.setBounds(379, 205, 39, 21);
-		panel.add(comboBox_1);
+		JComboBox min2 = new JComboBox();
+		min2.setBackground(Color.WHITE);
+		min2.setForeground(Color.MAGENTA);
+		min2.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		min2.setFont(new Font("DialogInput", Font.BOLD, 10));
+		min2.setBounds(379, 205, 39, 21);
+		String m2 = min2.getSelectedItem().toString();
+		int minEntrega = Integer.parseInt(m2);
+		panel.add(min2);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_2.setFont(new Font("DialogInput", Font.BOLD, 10));
-		comboBox_2.setBounds(121, 205, 39, 21);
-		panel.add(comboBox_2);
 		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_1_1.setFont(new Font("DialogInput", Font.BOLD, 10));
-		comboBox_1_1.setBounds(170, 205, 39, 21);
-		panel.add(comboBox_1_1);
+		
+		JComboBox hora1 = new JComboBox();
+		hora1.setForeground(Color.BLACK);
+		hora1.setModel(new DefaultComboBoxModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		hora1.setFont(new Font("DialogInput", Font.BOLD, 10));
+		hora1.setBounds(121, 205, 39, 21);
+		String h1 = hora1.getSelectedItem().toString();
+		int horaRecogida = Integer.parseInt(h1);
+		panel.add(hora2);
+		panel.add(hora1);
+		
+		JComboBox min1 = new JComboBox();
+		min1.setForeground(Color.MAGENTA);
+		min1.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		min1.setFont(new Font("DialogInput", Font.BOLD, 10));
+		min1.setBounds(170, 205, 39, 21);
+		String m1 = min1.getSelectedItem().toString();
+		int minRecogida = Integer.parseInt(m1);
+		panel.add(min2);
+		panel.add(min1);
 		
 		JLabel lblEntrega_1 = new JLabel(":");
 		lblEntrega_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -216,6 +295,23 @@ public class HacerReserva {
 		lblEntrega_1_1.setFont(new Font("DialogInput", Font.BOLD, 13));
 		lblEntrega_1_1.setBounds(362, 205, 25, 21);
 		panel.add(lblEntrega_1_1);
+		
+		
+		
+		
+		JButton btnVolver = new JButton("VOLVER");
+		btnVolver.setForeground(Color.ORANGE);
+		btnVolver.setBackground(Color.GRAY);
+		btnVolver.setFont(new Font("DialogInput", Font.BOLD, 11));
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RentacarApp.App.SesionIniciada();
+				frame.dispose();
+			}
+		});
+		btnVolver.setBounds(121, 421, 80, 21);
+		panel.add(btnVolver);
 		boolean defaultColor = true;
 		
 		
@@ -228,4 +324,23 @@ public class HacerReserva {
 		
 		
 	}
+	public static long calcularDiasRestantes(long mili3) {
+		
+		long diasRestantes=0;
+		diasRestantes = (mili3/3600000)/24;
+		return diasRestantes;
+	}
+	
+	public static String guardarRecogida(int horaRecogida, int minRecogida, String fecha1) {
+		
+		String auxRecogida = fecha1 +" "+ horaRecogida +":"+ minRecogida;
+		return auxRecogida;
+	}
+	
+	public static String guardarEntrega(int horaEntrega, int minEntrega, String fecha2) {
+		
+		String auxEntrega = fecha2 +" "+ horaEntrega +":"+ minEntrega;
+		return auxEntrega;
+	}
+   
 }
