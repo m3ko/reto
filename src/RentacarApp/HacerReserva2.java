@@ -59,7 +59,7 @@ public class HacerReserva2 {
 		JMenu mnNewMenu = new JMenu("Menú");
 		menuBar.add(mnNewMenu);
 		mnNewMenu.setIcon(null);
-		mnNewMenu.setSelectedIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\logoMenu.png"));
+		mnNewMenu.setSelectedIcon(new ImageIcon(".\\src\\logoMenu.png"));
 		mnNewMenu.setBackground(new Color(255, 215, 0));
 		mnNewMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -76,7 +76,7 @@ public class HacerReserva2 {
 						System.exit(0);
 					}
 				});
-				cerrar.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\cerrar.png"));
+				cerrar.setIcon(new ImageIcon(".\\src\\cerrar.png"));
 				cerrar.setForeground(Color.RED);
 				cerrar.setFont(new Font("Corbel", Font.BOLD, 10));
 				cerrar.setBackground(Color.MAGENTA);
@@ -139,7 +139,7 @@ public class HacerReserva2 {
 		String carroceria = null;
 		
 		JButton compactButton = new JButton("COMPACTO");
-		compactButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\compacto (1).jpg"));
+		compactButton.setIcon(new ImageIcon(".\\src\\compacto (1).jpg"));
 		compactButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String carroceria = "compacto";
@@ -158,7 +158,7 @@ public class HacerReserva2 {
 				frame.dispose();
 			}
 		});
-		coupeButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\coupe (1).jpg"));
+		coupeButton.setIcon(new ImageIcon(".\\src\\coupe (1).jpg"));
 		coupeButton.setBounds(152, 203, 112, 57);
 		panel.add(coupeButton);
 		
@@ -170,7 +170,7 @@ public class HacerReserva2 {
 				frame.dispose();
 			}
 		});
-		sedanButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\sedan1 (1).jpg"));
+		sedanButton.setIcon(new ImageIcon(".\\src\\sedan1 (1).jpg"));
 		sedanButton.setBounds(274, 203, 112, 57);
 		panel.add(sedanButton);
 		
@@ -183,7 +183,7 @@ public class HacerReserva2 {
 				
 			}
 		});
-		hibridoButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\hibrido (1).jpeg"));
+		hibridoButton.setIcon(new ImageIcon(".\\src\\hibrido (1).jpeg"));
 		hibridoButton.setBounds(152, 286, 112, 57);
 		panel.add(hibridoButton);
 		
@@ -196,7 +196,7 @@ public class HacerReserva2 {
 				
 			}
 		});
-		deportivoButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\deportivo (1).jpg"));
+		deportivoButton.setIcon(new ImageIcon(".\\src\\deportivo (1).jpg"));
 		deportivoButton.setBounds(30, 286, 112, 57);
 		panel.add(deportivoButton);
 		
@@ -208,7 +208,7 @@ public class HacerReserva2 {
 				frame.dispose();
 			}
 		});
-		suvButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\suv (1).jpeg"));
+		suvButton.setIcon(new ImageIcon(".\\src\\suv (1).jpeg"));
 		suvButton.setBounds(274, 286, 112, 57);
 		panel.add(suvButton);
 		
@@ -220,7 +220,7 @@ public class HacerReserva2 {
 				frame.dispose();
 			}
 		});
-		camionetaButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\camioneta (1).png"));
+		camionetaButton.setIcon(new ImageIcon(".\\src\\camioneta (1).png"));
 		camionetaButton.setBounds(30, 369, 112, 57);
 		panel.add(camionetaButton);
 		
@@ -232,7 +232,7 @@ public class HacerReserva2 {
 				frame.dispose();
 			}
 		});
-		minivanButton.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\minivan (1).jpeg"));
+		minivanButton.setIcon(new ImageIcon(".\\src\\minivan (1).jpeg"));
 		minivanButton.setBounds(152, 369, 112, 57);
 		panel.add(minivanButton);
 		

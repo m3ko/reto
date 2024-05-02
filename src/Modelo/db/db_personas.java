@@ -232,4 +232,32 @@ public class db_personas {
 
 		return check;
 	}
+	
+	public static String getDni(String mail) {
+
+		String aux = "";
+
+		Connection con = Modelo.db.db_connect.conexion();
+		System.out.println("se ha conectao");
+
+		try {
+
+			Statement st = con.createStatement();
+			String sql = "SELECT dni FROM `personas` WHERE mail = '"+mail+"';";
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery(sql);
+			System.out.println("sql funciona");
+
+			while (rs.next()) {
+
+				aux = rs.getString("dni");
+
+			}
+
+		} catch (Exception e) {
+			System.err.println("Ha fallado el metodo getDni()");
+		}
+
+		return aux;
+	}
 }

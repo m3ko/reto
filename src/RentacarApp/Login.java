@@ -10,6 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,11 +34,32 @@ import javax.swing.JToggleButton;
 
 
 public class Login {
-
+	
+	public static Object mailAux;
+	
   public static void main(String[] args) {
     // TODO Auto-generated method stub
 
-
+	 Logger log = Logger.getLogger("Logger");
+	 
+	 log.setLevel(Level.ALL);
+	 log.setUseParentHandlers(false);
+	 Handler consoleHandler = new ConsoleHandler();
+	 Handler fileHandler = null;
+	 log.addHandler(consoleHandler);
+	 consoleHandler.setLevel(Level.WARNING);
+	 try {
+		fileHandler=new FileHandler(".\\logs\\FormatoHTML"+System.currentTimeMillis()+".html", true);
+		log.addHandler(fileHandler);
+		fileHandler.setFormatter(new RentacarApp.FormatoHTML());
+	} catch (SecurityException e) {
+		e.printStackTrace();
+		
+	}catch (IOException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	 
     JFrame frame = new JFrame();
     
     frame.setSize(430, 457);
@@ -114,10 +141,11 @@ public class Login {
         // TODO Auto-generated method stub
 
         String usuarioAux = usuario.getText();
+        Login.mailAux = usuarioAux;
         String contraseñaAux = contraseña.getText();
         boolean r=	db_personas.comprobarPersonas(usuarioAux, contraseñaAux);
         if (r == true) {
-		
+        	log.log(Level.FINE,usuarioAux + ";" + contraseñaAux);
         	System.out.println("Inicio de sesion exitosa");
         	App.SesionIniciada();
         	frame.dispose();
@@ -156,7 +184,7 @@ public class Login {
     frame.getContentPane().add(panel);
     
     JButton cerrar = new JButton("");
-    cerrar.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\cerrar.png"));
+    cerrar.setIcon(new ImageIcon(".\\src\\cerrar.png"));
     cerrar.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
     		System.exit(0);

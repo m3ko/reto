@@ -9,6 +9,7 @@ public class vehiculos {
 	public int año_fabricación;
 	public int precio_alquiler;
 	public String estado;
+	public String cif_empresa;
 	public String getCodigo_vehiculo() {
 		return codigo_vehiculo;
 	}
@@ -51,8 +52,14 @@ public class vehiculos {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public String getCif_empresa() {
+		return cif_empresa;
+	}
+	public void setCif_empresa(String cif_empresa) {
+		this.cif_empresa = cif_empresa;
+	}
 	public vehiculos(String codigo_vehiculo, String marca, String modelo, String tipo, int año_fabricación,
-			int precio_alquiler, String estado) {
+			int precio_alquiler, String estado, String cif_empresa) {
 		super();
 		this.codigo_vehiculo = codigo_vehiculo;
 		this.marca = marca;
@@ -61,6 +68,7 @@ public class vehiculos {
 		this.año_fabricación = año_fabricación;
 		this.precio_alquiler = precio_alquiler;
 		this.estado = estado;
+		this.cif_empresa = cif_empresa;
 	}
 	public vehiculos() {
 		super();
@@ -70,9 +78,6 @@ public class vehiculos {
 	public String toString() {
 		return "vehiculos [codigo_vehiculo=" + codigo_vehiculo + ", marca=" + marca + ", modelo=" + modelo + ", tipo="
 				+ tipo + ", año_fabricación=" + año_fabricación + ", precio_alquiler=" + precio_alquiler + ", estado="
-				+ estado + "]";
+				+ estado + ", cif_empresa=" + cif_empresa + "]";
 	}
-
-	
-	
 }

@@ -19,6 +19,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+import Modelo.empresas;
 import Modelo.vehiculos;
 
 import javax.swing.JComboBox;
@@ -26,6 +27,14 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 
 public class HacerReserva3 {
+
+	public static Object marcaAux;
+	public static Object modeloAux;
+	public static Object precioAux;
+	public static Object nombreEmpresaAux;
+	public static Object cifEmpresaAux;
+	public static Object codigoVehiculoAux;
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -51,6 +60,8 @@ public class HacerReserva3 {
 		panel.setBackground(color);
 		panel.setLayout(null);
 
+		// MENU
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(334, 0, 96, 31);
 		menuBar.setForeground(new Color(255, 255, 255));
@@ -60,7 +71,7 @@ public class HacerReserva3 {
 		JMenu mnNewMenu = new JMenu("Menú");
 		menuBar.add(mnNewMenu);
 		mnNewMenu.setIcon(null);
-		mnNewMenu.setSelectedIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\logoMenu.png"));
+		mnNewMenu.setSelectedIcon(new ImageIcon(".\\src\\logoMenu.png"));
 		mnNewMenu.setBackground(new Color(255, 215, 0));
 		mnNewMenu.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -77,7 +88,7 @@ public class HacerReserva3 {
 				System.exit(0);
 			}
 		});
-		cerrar.setIcon(new ImageIcon("C:\\Users\\1AW3-11\\Desktop\\rentacar\\src\\cerrar.png"));
+		cerrar.setIcon(new ImageIcon(".\\src\\cerrar.png"));
 		cerrar.setForeground(Color.RED);
 		cerrar.setFont(new Font("Corbel", Font.BOLD, 10));
 		cerrar.setBackground(Color.MAGENTA);
@@ -98,6 +109,8 @@ public class HacerReserva3 {
 		logo.setVerticalAlignment(SwingConstants.TOP);
 		panel.add(logo);
 
+		// PROGRESS BAR
+
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(0, 144, 430, 14);
 		progressBar.setForeground(Color.MAGENTA);
@@ -105,6 +118,8 @@ public class HacerReserva3 {
 		panel.add(progressBar);
 
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
+
+		// NEXT
 
 		JButton btnNext = new JButton("NEXT");
 		btnNext.setForeground(Color.ORANGE);
@@ -114,9 +129,10 @@ public class HacerReserva3 {
 			public void actionPerformed(ActionEvent e) {
 
 				frame.dispose();
-				RentacarApp.ConfirmaReserva.ReservaConfirmar(0, 0, null);
+				RentacarApp.ConfirmaReserva.ReservaConfirmar();
 			}
 		});
+
 		btnNext.setBounds(325, 409, 80, 21);
 		panel.add(btnNext);
 
@@ -126,10 +142,10 @@ public class HacerReserva3 {
 		btnVolver.setFont(new Font("DialogInput", Font.BOLD, 11));
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				frame.dispose();
 				RentacarApp.HacerReserva2.reservaHacer2();
-				
+
 			}
 		});
 		btnVolver.setBounds(235, 409, 80, 21);
@@ -186,6 +202,7 @@ public class HacerReserva3 {
 				comboModelo.removeAllItems();
 				textPrecio.removeAll();
 				String marcaSeleccionada = comboMarca.getSelectedItem().toString();
+				HacerReserva3.marcaAux = marcaSeleccionada;
 				if (marcaSeleccionada != null) {
 					long precioSeleccionado = 0;
 					ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos.getModelos(marcaSeleccionada,
@@ -201,27 +218,51 @@ public class HacerReserva3 {
 
 						textPrecio.removeAll();
 						String marcaSeleccionada = comboMarca.getSelectedItem().toString();
+
 						if (comboModelo.getSelectedItem() != null) {
 							String modeloSeleccionado = comboModelo.getSelectedItem().toString();
+							HacerReserva3.modeloAux = modeloSeleccionado;
 							ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos.getModelos(marcaSeleccionada,
 									carroceria);
 
 							for (vehiculos vehiculos : modeloPorMarca) {
 								if (vehiculos.getModelo().equals(modeloSeleccionado)) {
 									int precio = vehiculos.getPrecio_alquiler();
-									
+
 									String aux = Integer.toString(precio);
+									HacerReserva3.precioAux = aux;
 									textPrecio.setText(aux);
-									
+
 									String codigo_vehiculo = vehiculos.getCodigo_vehiculo();
+									codigoVehiculoAux = codigo_vehiculo;
 									String marca = vehiculos.getMarca();
 									String modelo = vehiculos.getModelo();
 									String tipo = vehiculos.getTipo();
 									int año_fabricacion = vehiculos.getAño_fabricación();
-									
+									String auxCif_empresa = vehiculos.getCif_empresa();
+									cifEmpresaAux = auxCif_empresa;
+									String nombre_empresa ="";
+
+									ArrayList<empresas> listaEmpresas = Modelo.db.db_empresas.getEmpresas();
+
+									for (empresas empresas : listaEmpresas) {
+
+										if (empresas.getCif().equals(auxCif_empresa)) {
+
+											nombre_empresa = empresas.getNombre();
+											nombreEmpresaAux = nombre_empresa;
+
+										}
+
+									}
+
 									txtrDescripcion.removeAll();
-									txtrDescripcion.setText("\r\n"+"\r\n"+" Descripción del vehiculo:\r\n"+"\r\n"+" Codigo del vehiculo: "+codigo_vehiculo +"\r\n"+" Marca: "+ marca +"\r\n"+" Modelo: "+ modelo +"\r\n"+" Tipo de Vehículo: "+ tipo +"\r\n"+" Año de Fabricación: "+ año_fabricacion);
-									
+									txtrDescripcion.setText("\r\n" + "\r\n" + " Descripción del vehiculo:\r\n" + "\r\n"
+											+ " Codigo del vehiculo: " + codigo_vehiculo + "\r\n" + " Marca: " + marca
+											+ "\r\n" + " Modelo: " + modelo + "\r\n" + " Tipo de Vehículo: " + tipo
+											+ "\r\n" + " Año de Fabricación: " + año_fabricacion + "\r\n"
+											+ " Empresa: " + nombre_empresa);
+
 								}
 							}
 						}
@@ -254,18 +295,6 @@ public class HacerReserva3 {
 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-
-	}
-
-	public static long calcularPrecioReal(long precioSeleccionado, long diasRestantes) {
-		long precioFinal = 0;
-		long aux = 0;
-
-		precioFinal = precioSeleccionado * diasRestantes;
-		return precioFinal;
 	}
 
 }
