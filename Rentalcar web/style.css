@@ -125,3 +125,6 @@ footer{
 #bookTable tbody td:not(:last-child) {
   border-right: 1px solid #eee;
 }
+.cardd{
+  padding-bottom: 2%;
+}
