@@ -41,7 +41,9 @@ import java.awt.BorderLayout;
 import javax.swing.border.MatteBorder;
 
 public class App {
-
+	
+	
+	public static int reservaGestion;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -82,6 +84,7 @@ public class App {
 			public void actionPerformed(ActionEvent e) {
 				HacerReserva.reservaHacer();
 				frame.dispose();
+				App.reservaGestion= 0;
 			}
 		});
 
@@ -144,6 +147,12 @@ public class App {
 						JButton gestionarReserva = new JButton("GESTIONAR RESERVA");
 						gestionarReserva.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								
+								App.reservaGestion=1;
+								frame.dispose();
+								GestionarReserva.reservaGestionar();
+								
+								
 							}
 						});
 						gestionarReserva.setForeground(Color.BLACK);

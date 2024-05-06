@@ -10,7 +10,52 @@ import RentacarApp.HacerReserva3;
 import RentacarApp.Pagar;
 
 public class db_vehiculos {
+	
+	
+	public static ArrayList<vehiculos> getVehiculos() {
 
+		ArrayList<vehiculos> listaVehiculos = new ArrayList<vehiculos>();
+
+		Connection connect = Modelo.db.db_connect.conexion();
+		try {
+
+			Statement st = connect.createStatement();
+			String sql = "SELECT * FROM `vehiculos`;";
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				String codigo_vehiculo = rs.getString("codigo_vehiculo");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String tipo = rs.getString("tipo");
+				int año_fabricacion = rs.getInt("año_fabricacion");
+				int precio_alquiler = rs.getInt("precio_alquiler");
+				String estado = rs.getString("estado");
+				String cif_empresa = rs.getString("cif_empresa");
+
+				vehiculos vehiculos = new vehiculos(null, null, null, null, 0, 0, null, null);
+
+				vehiculos.setCodigo_vehiculo(codigo_vehiculo);
+				vehiculos.setMarca(marca);
+				vehiculos.setModelo(modelo);
+				vehiculos.setTipo(tipo);
+				vehiculos.setAño_fabricación(año_fabricacion);
+				vehiculos.setPrecio_alquiler(precio_alquiler);
+				vehiculos.setEstado(estado);
+				vehiculos.setCif_empresa(cif_empresa);
+
+				listaVehiculos.add(vehiculos);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return listaVehiculos;
+	}
+	
+	
 	public static ArrayList<vehiculos> getMarcas() {
 
 		ArrayList<vehiculos> listaMarcas = new ArrayList<vehiculos>();
@@ -45,7 +90,7 @@ public class db_vehiculos {
 		try {
 
 			Statement st = connect.createStatement();
-			String sql = "SELECT DISTINCT marca FROM `vehiculos` WHERE tipo='" + carroceria + "';";
+			String sql = "SELECT DISTINCT marca FROM `vehiculos` WHERE tipo='" + carroceria + "' AND estado='disponible';";
 			ResultSet rs = st.executeQuery(sql);
 
 			while (rs.next()) {

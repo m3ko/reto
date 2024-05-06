@@ -155,6 +155,7 @@ public class HacerReserva3 {
 
 		JComboBox comboMarca = new JComboBox();
 		comboMarca.setToolTipText("Seleccione");
+		comboMarca.addItem("");
 
 		if (carroceria == null) {
 
@@ -191,86 +192,111 @@ public class HacerReserva3 {
 		txtrDescripcion.setText("\r\n \r\n Descripción del Vehículo:");
 
 		JTextArea textPrecio = new JTextArea();
+		textPrecio.setEditable(false);
 		textPrecio.setBounds(48, 330, 80, 22);
 		panel.add(textPrecio);
 		boolean defaultColor = true;
 		System.out.println(diasRestantes);
+		// ANTES DE FILTRAR
 
+		// DESPUES DE FILTRAR
 		comboMarca.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				comboModelo.removeAllItems();
-				textPrecio.removeAll();
-				String marcaSeleccionada = comboMarca.getSelectedItem().toString();
-				HacerReserva3.marcaAux = marcaSeleccionada;
-				if (marcaSeleccionada != null) {
-					long precioSeleccionado = 0;
-					ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos.getModelos(marcaSeleccionada,
-							carroceria);
-					for (vehiculos modelos : modeloPorMarca) {
-						comboModelo.addItem(modelos.getModelo());
+//
+//				if (comboMarca.getSelectedItem() != "") {
+//					textPrecio.setText("");
+//					comboModelo.removeAllItems();
+//					txtrDescripcion.removeAll();
+//					txtrDescripcion.setText("\r\n" + "\r\n" + " Descripción del vehiculo:\r\n"
+//							+ "\r\n" + " Codigo del vehiculo: " + " " + "\r\n"
+//							+ " Marca: " + " " + "\r\n" + " Modelo: " + " " + "\r\n"
+//							+ " Tipo de Vehículo: " + " " + "\r\n" + " Año de Fabricación: "
+//							+ " " + "\r\n" + " Empresa: " + " ");
+//				} else {
+					comboModelo.removeAllItems();
+					textPrecio.removeAll();
+					String marcaSeleccionada = comboMarca.getSelectedItem().toString();
+					HacerReserva3.marcaAux = marcaSeleccionada;
+					if (marcaSeleccionada != null) {
+						long precioSeleccionado = 0;
+						ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos.getModelos(marcaSeleccionada,
+								carroceria);
+						for (vehiculos modelos : modeloPorMarca) {
+							comboModelo.addItem(modelos.getModelo());
 
+						}
 					}
-				}
-				comboModelo.addActionListener(new ActionListener() {
+					comboModelo.addActionListener(new ActionListener() {
 
-					public void actionPerformed(ActionEvent e) {
+						public void actionPerformed(ActionEvent e) {
 
-						textPrecio.removeAll();
-						String marcaSeleccionada = comboMarca.getSelectedItem().toString();
+							textPrecio.removeAll();
+							String marcaSeleccionada = comboMarca.getSelectedItem().toString();
+							if (marcaSeleccionada=="") {
+								comboModelo.removeAllItems();
+								textPrecio.setText("");
+								txtrDescripcion.removeAll();
+								txtrDescripcion.setText("\r\n" + "\r\n" + " Descripción del vehiculo:\r\n"
+										+ "\r\n" + " Codigo del vehiculo: " + "" + "\r\n"
+										+ " Marca: " + "" + "\r\n" + " Modelo: " + "" + "\r\n"
+										+ " Tipo de Vehículo: " + "" + "\r\n" + " Año de Fabricación: "
+										+ "" + "\r\n" + " Empresa: " + "");
+							}
 
-						if (comboModelo.getSelectedItem() != null) {
-							String modeloSeleccionado = comboModelo.getSelectedItem().toString();
-							HacerReserva3.modeloAux = modeloSeleccionado;
-							ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos.getModelos(marcaSeleccionada,
-									carroceria);
+							if (comboModelo.getSelectedItem() != null) {
+								String modeloSeleccionado = comboModelo.getSelectedItem().toString();
+								HacerReserva3.modeloAux = modeloSeleccionado;
+								ArrayList<vehiculos> modeloPorMarca = Modelo.db.db_vehiculos
+										.getModelos(marcaSeleccionada, carroceria);
 
-							for (vehiculos vehiculos : modeloPorMarca) {
-								if (vehiculos.getModelo().equals(modeloSeleccionado)) {
-									int precio = vehiculos.getPrecio_alquiler();
+								for (vehiculos vehiculos : modeloPorMarca) {
+									if (vehiculos.getModelo().equals(modeloSeleccionado)) {
+										int precio = vehiculos.getPrecio_alquiler();
 
-									String aux = Integer.toString(precio);
-									HacerReserva3.precioAux = aux;
-									textPrecio.setText(aux);
+										String aux = Integer.toString(precio);
+										HacerReserva3.precioAux = aux;
+										textPrecio.setText(aux);
 
-									String codigo_vehiculo = vehiculos.getCodigo_vehiculo();
-									codigoVehiculoAux = codigo_vehiculo;
-									String marca = vehiculos.getMarca();
-									String modelo = vehiculos.getModelo();
-									String tipo = vehiculos.getTipo();
-									int año_fabricacion = vehiculos.getAño_fabricación();
-									String auxCif_empresa = vehiculos.getCif_empresa();
-									cifEmpresaAux = auxCif_empresa;
-									String nombre_empresa ="";
+										String codigo_vehiculo = vehiculos.getCodigo_vehiculo();
+										codigoVehiculoAux = codigo_vehiculo;
+										String marca = vehiculos.getMarca();
+										String modelo = vehiculos.getModelo();
+										String tipo = vehiculos.getTipo();
+										int año_fabricacion = vehiculos.getAño_fabricación();
+										String auxCif_empresa = vehiculos.getCif_empresa();
+										cifEmpresaAux = auxCif_empresa;
+										String nombre_empresa = "";
 
-									ArrayList<empresas> listaEmpresas = Modelo.db.db_empresas.getEmpresas();
+										ArrayList<empresas> listaEmpresas = Modelo.db.db_empresas.getEmpresas();
 
-									for (empresas empresas : listaEmpresas) {
+										for (empresas empresas : listaEmpresas) {
 
-										if (empresas.getCif().equals(auxCif_empresa)) {
+											if (empresas.getCif().equals(auxCif_empresa)) {
 
-											nombre_empresa = empresas.getNombre();
-											nombreEmpresaAux = nombre_empresa;
+												nombre_empresa = empresas.getNombre();
+												nombreEmpresaAux = nombre_empresa;
+
+											}
 
 										}
 
+										txtrDescripcion.removeAll();
+										txtrDescripcion.setText("\r\n" + "\r\n" + " Descripción del vehiculo:\r\n"
+												+ "\r\n" + " Codigo del vehiculo: " + codigo_vehiculo + "\r\n"
+												+ " Marca: " + marca + "\r\n" + " Modelo: " + modelo + "\r\n"
+												+ " Tipo de Vehículo: " + tipo + "\r\n" + " Año de Fabricación: "
+												+ año_fabricacion + "\r\n" + " Empresa: " + nombre_empresa);
+
 									}
-
-									txtrDescripcion.removeAll();
-									txtrDescripcion.setText("\r\n" + "\r\n" + " Descripción del vehiculo:\r\n" + "\r\n"
-											+ " Codigo del vehiculo: " + codigo_vehiculo + "\r\n" + " Marca: " + marca
-											+ "\r\n" + " Modelo: " + modelo + "\r\n" + " Tipo de Vehículo: " + tipo
-											+ "\r\n" + " Año de Fabricación: " + año_fabricacion + "\r\n"
-											+ " Empresa: " + nombre_empresa);
-
 								}
 							}
+
 						}
+					});
 
-					}
-				});
-
-			}
+				}
+//			}
 		});
 
 		// LABELS

@@ -1,10 +1,14 @@
 package Modelo.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.util.ArrayList;
 
+import Modelo.itinerarios;
 import RentacarApp.HacerReserva;
 import RentacarApp.HacerReserva3;
 
@@ -59,10 +63,56 @@ public class db_itinerarios {
 			}
 
 		} catch (SQLException e) {
-			System.err.println("Ha fallado el metodo getDni()");
+			System.err.println("Ha fallado el metodo getId_itinerario()");
 		}
 		
 	return id_itinerario;	
+	}
+	
+	public static ArrayList<itinerarios> getItinerarios(int aux){
+		
+		ArrayList<itinerarios> listaItinerarios = new ArrayList();
+		Connection con = Modelo.db.db_connect.conexion();
+		System.out.println("se ha conectao");
+
+		try {
+
+			Statement st = con.createStatement();
+			String sql = "SELECT * FROM `itinerarios` WHERE id_itinerario = '"+aux+"';";
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery(sql);
+			System.out.println("sql funciona");
+
+			while (rs.next()) {
+				
+				int id_itinerario = rs.getInt("id_itinerario");
+				String cif_empresa = rs.getString("cif_empresa");
+				String codigo_vehiculo = rs.getString("codigo_vehiculo");
+				Date fecha_entrega = rs.getDate("fecha_entrega");
+				Date fecha_recogida = rs.getDate("fecha_recogida");
+				Time Hora_recogida = rs.getTime("hora_recogida");
+				Time Hora_entrega = rs.getTime("hora_entrega");
+				int aforo = rs.getInt("aforo");
+				
+				itinerarios itinerarios = new itinerarios(0, null, null, null, null, null, null, 0);
+				
+				itinerarios.setId_itinerario(id_itinerario);
+				itinerarios.setCif_empresa(cif_empresa);
+				itinerarios.setCodigo_vehiculo(codigo_vehiculo);
+				itinerarios.setFecha_entrega(fecha_entrega);
+				itinerarios.setFecha_recogida(fecha_recogida);
+				itinerarios.setHora_recogida(Hora_recogida);
+				itinerarios.setHora_entrega(Hora_entrega);
+				itinerarios.setAforo(aforo);
+				
+				listaItinerarios.add(itinerarios);
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Ha fallado el metodo getItinerarios()");
+		}
+		
+		return listaItinerarios;
 	}
 	
 }

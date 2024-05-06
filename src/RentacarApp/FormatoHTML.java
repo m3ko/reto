@@ -8,11 +8,11 @@ public class FormatoHTML extends Formatter {
 	@Override
 	public String format(LogRecord record) {
 		String usu, cont;
-		String lerroa = record.getMessage();
-		String[] zatiak;
-		zatiak = lerroa.split(";");
-		usu = zatiak[0];
-		cont = zatiak[1];
+		String linea = record.getMessage();
+		String[] cachos;
+		cachos = linea.split(";");
+		usu = cachos[0];
+		cont = cachos[1];
 		return "<tr>\n" + "<td>" + usu + "</td>\n" + "<td>" + cont + "</td>\n"+ "</tr>\n";
 	}
 

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import Modelo.reservas;
 import RentacarApp.HacerReserva3;
 import RentacarApp.Pagar;
 
@@ -32,6 +34,36 @@ public class db_reservas {
 		}
 		Modelo.db.db_vehiculos.setVendido();
 
+	}
+
+	public static ArrayList<reservas> getReservas() {
+
+		Connection connect = Modelo.db.db_connect.conexion();
+		String mail = RentacarApp.Login.mailAux.toString();
+		String dniAux = db_personas.getDni(mail);
+		ArrayList<reservas> listaReservas = new ArrayList<>();
+		try {
+
+			Statement st = connect.createStatement();
+			String sql = "SELECT id_reserva, id_itinerario FROM `reservas` WHERE dni='" + dniAux + "';";
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				int id_reserva = rs.getInt("id_reserva");
+				int id_itinerario = rs.getInt("id_itinerario");
+
+				reservas reservas = new reservas(0, null, null, null, 0);
+
+				reservas.setId_reserva(id_reserva);
+				reservas.setId_itinerario(id_itinerario);
+				listaReservas.add(reservas);
+
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		return listaReservas;
 	}
 
 }

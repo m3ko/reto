@@ -49,7 +49,7 @@ public class Login {
 	 log.addHandler(consoleHandler);
 	 consoleHandler.setLevel(Level.WARNING);
 	 try {
-		fileHandler=new FileHandler(".\\logs\\FormatoHTML"+System.currentTimeMillis()+".html", true);
+		fileHandler=new FileHandler(".\\logs\\login"+System.currentTimeMillis()+".html", true);
 		log.addHandler(fileHandler);
 		fileHandler.setFormatter(new RentacarApp.FormatoHTML());
 	} catch (SecurityException e) {
