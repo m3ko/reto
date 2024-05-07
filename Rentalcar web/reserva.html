@@ -13,7 +13,7 @@ body{
 </head>
 	<div class="row" >
          
-        <!-- NavBar - cambio Sofia -->
+        <!-- NavBar -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
               <a class="navbar-brand" href="index.html">
@@ -43,44 +43,47 @@ body{
               </div>
             </div>
           </nav>
+          <!-- FIN NavBar -->
            
-	<div id="bookForm">
-		<input id="vehiculo" type="file" onChange="loadDoc(event)">
-		<label for="vehiculo">Fitxategiko datuak igo</label>
-	</div>
+      <div id="bookForm">
+        <input id="vehiculo" type="file" onChange="loadDoc(event)">
+        <label for="vehiculo">Fitxategiko datuak igo</label>
+      </div>
 
-	<table id="bookTable">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Marca</th>
-				<th>Modelo</th>
-				<th>Tipo</th>
-				<th>Año</th>
-				<th>Precio</th>
-			</tr>
-		</thead>
-  
-		<tbody>
-			<tr>
-				<td colspan="3" style="text-align: center">Erregistro gabe</td>
-			</tr>
-		</tbody>
-	</table>	   
-		   
-	
-    <form class="datos-personales">
-        <label for="id">ID Vehiculo:</label>
-        <input id="id" type="id" value=""/>
-        <label for="dni">DNI:</label>
-        <input id="dni" type="dni" value=""/>
-		<label for="correo">Correo:</label>
-        <input id="correo" type="correo" value=""/>
-		
-        <button type="button" id="boton-descargar">Descargar fichero</button>
-    </form>
-    
+        <!-- Tabla xml -->
+
+      <table id="bookTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Tipo</th>
+            <th>Año</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <tr>
+            <td colspan="3" style="text-align: center">Erregistro gabe</td>
+          </tr>
+        </tbody>
+      </table>	   
+          
+      
+        <form class="datos-personales">
+            <label for="id">ID Vehiculo:</label>
+            <input id="id" type="id" value=""/>
+            <label for="dni">DNI:</label>
+            <input id="dni" type="dni" value=""/>
+        <label for="correo">Correo:</label>
+            <input id="correo" type="correo" value=""/>
         
+            <button type="button" id="boton-descargar">Descargar fichero</button>
+        </form>
+        
+            
         <!-- Footer -->
         
 <footer class="text-center text-lg-start  text-muted">
@@ -115,19 +118,13 @@ body{
       </div>
       <!-- Right -->
     </section>
-    <!-- Section: Social media -->
-  
-
-  
-    <!-- Copyright -->
-    <div class="text-center p-4">
-      © 2024 Copyright:
-      <a class="text-reset fw-bold" href="https://www.rentalcars.com/">Rentalcars.com</a>
-    </div>
-    <!-- Copyright -->
   </footer>
-  <!-- Footer -->
+  <!-- FIN Footer -->
     </div>
+
+
+    <!-- Scrip para el xml -->
+
 <script>
 	document.addEventListener('DOMContentLoaded', (e)=>{
  
@@ -284,4 +281,5 @@ function onError(reason) {
   console.error(reason)
 }
 	</script>
+  <!-- Fin script xml -->
 </html>
