@@ -47,7 +47,7 @@ body{
            
       <div id="bookForm">
         <input id="vehiculo" type="file" onChange="loadDoc(event)">
-        <label for="vehiculo">Fitxategiko datuak igo</label>
+        <label for="vehiculo">Sube los datos del archivo</label>
       </div>
 
         <!-- Tabla xml -->
@@ -58,27 +58,26 @@ body{
             <th>ID</th>
             <th>Marca</th>
             <th>Modelo</th>
-            <th>Tipo</th>
-            <th>Año</th>
+            <th>Fecha de recogida</th>
+            <th>Fecha de entrega</th>
             <th>Precio</th>
           </tr>
         </thead>
       
         <tbody>
           <tr>
-            <td colspan="3" style="text-align: center">Erregistro gabe</td>
+            <td colspan="3" style="text-align: center">Sin registro</td>
           </tr>
         </tbody>
       </table>	   
           
       
         <form class="datos-personales">
-            <label for="id">ID Vehiculo:</label>
+            <label for="id">ID:</label>
             <input id="id" type="id" value=""/>
             <label for="dni">DNI:</label>
             <input id="dni" type="dni" value=""/>
-        <label for="correo">Correo:</label>
-            <input id="correo" type="correo" value=""/>
+        
         
             <button type="button" id="boton-descargar">Descargar fichero</button>
         </form>
@@ -154,10 +153,6 @@ body{
         dni.textContent = document.querySelector('#dni').value;
         raiz.appendChild(dni);
  
-        const correo = documento.createElement('correo');
-        correo.textContent = document.querySelector('#correo').value;
-        raiz.appendChild(correo);
-		
  
         //Para el blob, necesitamos convertir el documento XML en una cadena
         //de texto. Usamos la propiedad outerHTML del elemento raiz
@@ -259,14 +254,14 @@ function showDocInTable(xml) {
 
   Array.from(peticion).map((vehiculo, i) => {
     const tr = document.createElement('tr')
-    const id = tagToData(vehiculo.querySelector('id'))
+    const id_itinerario = tagToData(vehiculo.querySelector('id_itinerario'))
     const marca = tagToData(vehiculo.querySelector('marca'))
     const modelo = tagToData(vehiculo.querySelector('modelo'))
-	const tipo = tagToData(vehiculo.querySelector('tipo'))
-	const ano = tagToData(vehiculo.querySelector('ano'))
+	const fecha_recogida = tagToData(vehiculo.querySelector('fecha_recogida'))
+	const fecha_entrega = tagToData(vehiculo.querySelector('fecha_entrega'))
 	const precio = tagToData(vehiculo.querySelector('precio'))
 
-    tr.append(id, marca, modelo, tipo, ano, precio)
+    tr.append(id_itinerario, marca, modelo, fecha_recogida, fecha_entrega, precio)
     table.appendChild(tr)
   })
 }
