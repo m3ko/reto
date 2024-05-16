@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>RentalCars</title>
+  <description>Web orientada al alquiler de coches</description>
+  <item>
+    <title>Sedán</title>
+    <link></link>
+    <description>Automóvil de cuatro puertas con espacio para cinco pasajeros y un maletero separado</description>
+  </item>
+  <item>
+    <title>Coupé</title>
+    <link></link>
+    <description>Automóvil deportivo de dos puertas con techo bajo y lineas aerodinámicas</description>
+  </item>
+  <item>
+    <title>Camioneta</title>
+    <link></link>
+    <description>Vehículo con cabina de pasajeros y área de carga abierta o cerrada</description>
+  </item>
+  <item>
+    <title>Deportivo</title>
+    <link></link>
+    <description>Automóvil diseñado para altas velocidades y manejo deportivo</description>
+  </item>
+  <item>
+    <title>SUV</title>
+    <link></link>
+    <description>Vehículo utilitario con traccion en las cuatro ruedas y capacidad para pasajeros y carga</description>
+  </item>
+  <item>
+    <title>Compacto</title>
+    <link></link>
+    <description>Automóvil pequeño y eficiente en combustible, ideal para la ciudad</description>
+  </item>
+  <item>
+    <title>Minivan</title>
+    <link></link>
+    <description>Vehículo familiar espacioso con capacidad para varios pasajeros y carga</description>
+  </item>
+  <item>
+    <title>Híbrido</title>
+    <link></link>
+    <description>Automóvil con motor de combustión y eléctrico, que combina eficiencia con rendimiento</description>
+  </item>
+</channel>
+
+</rss>
