@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="aboutUs.xsl"?>
+<peticion>
+	<persona>
+		<nombre>Ane</nombre>
+		<opinion>Me gustó mucho el coche que alquile, perfecto para toda la familia que tengo.</opinion>
+	</persona>
+	<persona>
+		<nombre>Aitorch</nombre>
+		<opinion>Es todo un flipe colega. Unos cochazos de la ostia, nano.</opinion>
+	</persona>
+	<persona>
+		<nombre>Dani</nombre>
+		<opinion>Lo flipé con el coche: masajeador en el asiento del piloto y el copiloto, música sincronizada con mis gestos corporales..... era pensarlo y se ponía la música que quería.... Buuaaaaah!!!</opinion>
+	</persona>
+	<persona>
+		<nombre>Jon</nombre>
+		<opinion>El coche olía a leonera. ¿El chicle en el volante es un extra? Se me quedó parado en la cuneta a los 10km. Por lo demás todo muy bien, excelente servicio.</opinion>
+	</persona>
+	
+</peticion>

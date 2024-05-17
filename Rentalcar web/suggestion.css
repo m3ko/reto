@@ -1,3 +1,6 @@
+body{
+	height: 100%;
+}
 .imagen{
     padding-left: 10%;
     position: left;
@@ -103,4 +106,8 @@ fieldset {
 }
 :-ms-input-placeholder {
  color:#888;
+}
+footer{
+    background-color: rgb(83, 78, 78)!important;
+    position: relative !important;
 }
