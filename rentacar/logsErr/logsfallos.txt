@@ -1,0 +1,11 @@
+Fecha:17/05/2024 12:24:46
+Error: "Ha fallado la conexión a la base de datos."Fecha:17/05/2024 12:24:46
+Ha fallado el metodo getPersonas() de la clase db_personas, se procede a leer fichero binarioFecha:17/05/2024 12:24:46
+Error: "Ha fallado la conexión a la base de datos."Fecha:17/05/2024 12:24:46
+Ha fallado el metodo getPersonas() de la clase db_personas, se procede a leer fichero binarioFecha:17/05/2024 12:26:19
+Error: "Ha fallado la conexión a la base de datos."
+Fecha:17/05/2024 12:26:19
+Ha fallado el metodo getPersonas() de la clase db_personas, se procede a leer fichero binarioFecha:17/05/2024 12:26:19
+Error: "Ha fallado la conexión a la base de datos."
+Fecha:17/05/2024 12:26:19
+Ha fallado el metodo getPersonas() de la clase db_personas, se procede a leer fichero binario
