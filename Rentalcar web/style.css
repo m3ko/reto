@@ -276,19 +276,24 @@ p {
 .text-box {
   text-align: center;
   background-image: url(golfito.jpg);
-  background-size:var(--width-container);
-  width: auto;
+  background-size: var(--width-container);
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-width: 100%;
+  width: 500px;
   height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Agrega esta propiedad */
 }
 
 .hover {
-  position: relative;
-  top: 30%;
   margin: 0 auto;
   text-align: center;
   width: 60%;
   transition: transform 300ms ease-in-out;
   transition: 600ms ease-in-out;
+  height: 100%; /* Agrega esta propiedad */
 }
 
 .text-box h3 {
