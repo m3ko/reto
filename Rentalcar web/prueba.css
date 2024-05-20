@@ -12,17 +12,32 @@ background-color: rgb(24, 121, 202) !important;
     margin-right: 10px;
 }
 body{
+    
     background: rgb(24,121,202)!important;
-background: linear-gradient(180deg, rgba(24,121,202,1) 8%, rgba(29,174,253,1) 40%, rgba(255,255,255,1) 78%)!important;
+    background: linear-gradient(180deg, rgba(24,121,202,1) 8%, rgba(29,174,253,1) 40%, rgba(255,255,255,1) 78%)!important;
+    overflow-x: hidden;
 }
-.botones-main{
+
+/* CSS para el botón de la sección principal */
+.botones-main {
     text-align: center;
 }
+
+/* Estilo de los botones */
+.botones-main .btn {
+    margin: 5px; /* Espacio entre los botones */
+    display: inline-block !important; /* Forzar los botones a mostrarse en línea */
+}
+
+
 .columnas-main{
     padding: 0%;
 }
 
-
+    .compare{
+        text-align: center;
+        margin-bottom: 0%;
+    }
     .d-block{
       width: 100%;
       height: 250px
@@ -30,33 +45,76 @@ background: linear-gradient(180deg, rgba(24,121,202,1) 8%, rgba(29,174,253,1) 40
     .carta{
         text-align: center;
         margin: 5%;
-        margin-top: 25%;
+        margin-top: 10%;
     }
     .izquierda{
         margin: 5%;
-        margin-top: 25%;
+        margin-top: 10%;
     }
     .derecha{
         margin: 5%;
-        margin-top: 25%;
+        margin-top: 10%;
     }
     .row{
         height: 500px;
+    }
+    .cosas{
+        background-color: white;
+        text-align: center;
+        margin-top: 3%;
+        max-width: 100%;
+        height: auto;
     }
 
 
     footer{
         background-color: rgb(83, 78, 78)!important;
+        padding-bottom: 1%;
         position: relative !important;
         margin-top: 150px;
  
     }
-    @media screen and (max-width: 992px ) and (min-width:769px ){
-       
-    }
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .row{
+            height: 300px;
+        }
+        .carta{
+            margin: 5%;
+            margin-left:3% ;
+            margin-right: 3%;
+        }
+        .izquierda{
+            margin: 5%;
+        }
+        .derecha{
+            margin: 5%;
+        }
+        footer{
+            margin-top: 400px;
+        }
+        .cosas{
+            margin-top: 600px;
+            margin-bottom: 10px;
+            width: 50%;
+            
+        }
+        .cosas img{
+            max-width: 200%;
+            height: auto;
+        }
+        .compare img {
+            max-width: 100%;
+            height: auto;
+        }
+        }
+        
     @media screen and (max-width: 768px){
         .row{
             height: 500px
+        }
+        .compare img {
+            max-width: 100%;
+            height: auto;
         }
         footer{
             margin-top: 600px;
@@ -74,5 +132,13 @@ background: linear-gradient(180deg, rgba(24,121,202,1) 8%, rgba(29,174,253,1) 40
         .derecha{
             margin: 5%;
             
+        }
+        .cosas{
+            margin-top: 700px;
+            width: 50%;
+        }
+        .cosas img{
+            max-width: 200%;
+            height: auto;
         }
     }
