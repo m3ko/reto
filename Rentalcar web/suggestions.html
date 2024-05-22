@@ -65,14 +65,14 @@
             <!-- Sugerencias -->
             <h2>Formulario de Sugerencias</h2>
 
-            <form name="suggestionForm">
+            <form name="suggestionForm" id="suggestionForm" action="http://1AW1.zornotzafpcloud.eus/sugerencia" method="post">
               <label for="name">Nombre:</label><br>
               <input type="text" id="name" name="name"><br>
               <label for="email">Correo electrónico:</label><br>
               <input type="email" id="email" name="email"><br>
               <label for="suggestion">Sugerencia:</label><br>
               <textarea id="suggestion" name="suggestion" rows="4" cols="50"></textarea><br>
-              <input type="button" value="Enviar Sugerencia" onclick="generateXML()">
+			  <button name="Submit" type="Submit" id="suggestionForm" data-submit="...Sending" value="text to send" onclick="generateXML()">Enviar Sugerencia</button>
             </form> 
             <!-- FIN Sugerencias -->
 			
