@@ -6,8 +6,9 @@ overflow-x: hidden;
 
 }
 .imagen{
-    padding-left: 10%;
-    position: left;
+    padding: 0%;
+    position: center;
+	width: 120%;
 }
 nav.navbar{
 background-color: rgb(24, 121, 202) !important;
@@ -55,9 +56,12 @@ border-radius: 10px;
 }
 
 footer{
+	color: rgb(0, 0, 0);
     background-color: rgb(83, 78, 78)!important;
     position: relative !important;
+	
 }
+
 .datos-personales{
             display: grid;
             grid-template-columns: 180px 200px;
@@ -294,7 +298,10 @@ p {
   transition: transform 300ms ease-in-out;
   transition: 600ms ease-in-out;
   height: 100%; /* Agrega esta propiedad */
+  vertical-align: middle;
+  line-height: 200px;
 }
+
 
 .text-box h3 {
   margin: 0 auto;
